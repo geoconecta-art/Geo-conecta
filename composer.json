@@ -8,6 +8,7 @@
         "php": "^8.2",
         "ext-mongodb": "*",
         "ext-gd": "*",
+        "ext-zip": "*",
         "barryvdh/laravel-dompdf": "*",
         "cuongnx/laravel-mongodb-permission": "^1.1",
         "dompdf/dompdf": "*",
