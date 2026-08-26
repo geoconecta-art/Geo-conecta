@@ -1,0 +1,103 @@
+:root {
+    --color-pollo-green: #2da943; 
+    --color-pollo-gray: #e3e3e3; 
+  }
+  
+
+body {
+    font-family: 'Nunito', sans-serif;
+    color: #fff;
+}
+
+main {
+    background: url(/img/degradado.png) no-repeat center center / cover !important;
+}
+
+.bg-gray {
+    background-color: #e3e3e3;
+}
+
+.form-control,
+.form-select {
+    background-color: #ffffff7a;
+    border: none;
+    /*color: #fff;*/
+}
+
+.form-select {
+    appearance: none; /* Ocultar el estilo nativo del select */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('/img/arrow-down.svg'); /* Utilizar la imagen SVG como fondo */
+    background-repeat: no-repeat; /* No repetir la imagen */
+    background-position: right .75rem center; /* Posición de la imagen */
+    padding-right: 1.5rem; /* Espacio para la imagen */
+    cursor: pointer; /* Cambiar cursor al puntero */
+}
+
+
+.form-select::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    border-color: transparent;
+    border-top-color: #000; /* Cambiar color del ícono */
+    border-style: solid;
+    border-width: 0.3em;
+    margin-top: -0.15em;
+}
+
+
+.form-date__input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+#loading {
+    position: fixed !important;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    opacity: 0.7;
+    z-index: 9999;
+    text-align: center;
+    display: none;
+}
+
+#loading>div {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+
+#loading .spinner-border {
+    width: 5rem;
+    height: 5rem;
+    color: var(--color-pollo-green);
+}
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+    background-color: var(--color-pollo-green);
+}
+
+.btn-pink {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #fe1b78;
+    --bs-btn-border-color: #fe1b78;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #fe1b78;
+    --bs-btn-hover-border-color: #fe1b78;
+    --bs-btn-focus-shadow-rgb: 49,132,253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #fe1b78;
+    --bs-btn-active-border-color: #fe1b78;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #fe1b78;
+    --bs-btn-disabled-border-color: #fe1b78;
+}

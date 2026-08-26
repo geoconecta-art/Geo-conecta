@@ -1,0 +1,157 @@
+<div class="text-right">
+    <a class="btn btn-sm btn-primary mt-3" 
+        href="/admin/reportes/descargar?type=8&corporation={{$corporation->id}}">
+        <span>Generar PDF</span> <em class="icon ni ni-printer"></em>
+    </a>
+</div>
+<div class="nk-block mt-3">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-2">Reporte de Promovidos por Promotor por Corporación </h5>
+            <h6>Corporación: {{ $corporation->name }}</h6>
+            <h6>Representante: {{ $corporation->manager }}</h6>
+            <span>Hasta el día {{ date('d/m/Y h:m:i') }} hrs</span>
+        </div>
+    </div>
+
+    @foreach ($mobilizers as $mob)
+    <div class="row mt-3">
+        <div class="col-lg-12 col-sm-12 mb-3">
+
+            <div class="card h-100">
+                <div class="card-inner">
+                    <div class="card-title-group mb-3">
+                        <div class="card-title card-title-sm">
+                            <div class="card-title-group mb-5">
+                                <div class="card-title card-title-sm mob-info">
+                                    <div>
+                                        <b>Promotor:</b>
+                                        <span>{{ $mob->name }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h6 class="dashboard-title">Promovidos</h3>
+
+                    <div class="table-responsive mt-3">
+                        <table class="nowrap table" id="mobTable">
+                            <thead>
+                            <tr>
+                                <th width="5%">#</th>
+                                <th width="25%">Nombre del Promovido</th>
+                                <th width="5%">ID</th>
+                                <th width="30%">Domicilio</th>
+                                <th width="15%">Teléfonos</th>
+                                <th width="5%">Voto</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ( $mob->proms as $prom )
+                                <tr>
+                                    <td>{{ $loop->index + 1 }}</td>
+                                    <td>{{ Person::getFullName($prom) }}</td>
+                                    <td><b>{{ $prom->section }}/{{ $prom->id }}</b></td>
+                                    <td>{{ $prom->address }}</td>
+                                    <td>
+                                        @if ( !is_null($prom->phone) ) Hab: {{ $prom->phone }} <br> @endif
+                                        Cel: {{ $prom->mobile }}
+                                    </td>
+                                    <td>{{ $prom->vote }}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+        
+    @endforeach
+
+    <div class="row mt-3">
+        <div class="col-lg-12 col-sm-12 mb-3">
+
+            <div class="card h-100">
+                <div class="card-inner">
+                    <div class="card-title-group mb-3">
+                        <div class="card-title card-title-sm">
+                            <div class="card-title-group mb-5">
+                                <div class="card-title card-title-sm mob-info">
+                                    <div>
+                                        <b>SIN PROMOTOR ASIGNADO</b>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h6 class="dashboard-title">Promovidos</h3>
+
+                    <div class="table-responsive mt-3">
+                        <table class="nowrap table" id="mobTable">
+                            <thead>
+                            <tr>
+                                <th width="5%">#</th>
+                                <th width="25%">Nombre del Promovido</th>
+                                <th width="5%">ID</th>
+                                <th width="30%">Domicilio</th>
+                                <th width="15%">Teléfonos</th>
+                                <th width="5%">Voto</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ( $noProm as $prom )
+                                <tr>
+                                    <td>{{ $loop->index + 1 }}</td>
+                                    <td>{{ Person::getFullName($prom) }}</td>
+                                    <td><b>{{ $prom->section }}/{{ $prom->id }}</b></td>
+                                    <td>{{ $prom->address }}</td>
+                                    <td>
+                                        @if ( !is_null($prom->phone) ) Hab: {{ $prom->phone }} <br> @endif
+                                        Cel: {{ $prom->mobile }}
+                                    </td>
+                                    <td>{{ $prom->vote }}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+</div>
+
+<script>
+
+    $('.table').DataTable({
+        language: spanish,
+        paginate: false
+    });
+
+    function showPromotedModal(personId, type) {
+
+        $loading.show();
+        let _token = $token.val();
+
+        $.post('/reports/promoted-modal', { 
+            '_token':_token, 
+            'person_id':personId,
+            'type': type,
+        }, function(data) {
+            $loading.hide();
+            $('#basicModal .modal-content').html(data);
+            $('#basicModal .modal-dialog').addClass('modal-lg');
+            $basicModal.modal('show');
+        });
+    }
+
+</script>

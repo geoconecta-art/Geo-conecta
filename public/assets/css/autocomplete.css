@@ -1,0 +1,19 @@
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    display: none;
+}
+
+.autocomplete-suggestion {
+    cursor: pointer;
+}
+
+.autocomplete-suggestions {
+    background-color: #fff;
+    border: 1px solid #dbdfea;
+    border-radius: 1.5rem;
+    overflow-y: scroll;
+    padding: 0px 24px 8px 24px;
+}
+
+.autocomplete-group {
+    padding-top: 10px;
+}
