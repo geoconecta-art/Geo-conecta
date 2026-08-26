@@ -1,5 +1,11 @@
 [phases.setup]
-nixPkgs = ['...', 'php82Extensions.mongodb']
+nixPkgs = [
+  'php82',
+  'php82Extensions.mongodb',
+  'php82Extensions.gd',
+  'php82Extensions.zip',
+  'php82Extensions.mbstring'
+]
 
 [phases.build]
 cmds = [
