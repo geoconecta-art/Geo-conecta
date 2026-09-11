@@ -7,8 +7,15 @@ services:
       - "8000:8000"
     volumes:
       - .:/var/www
-    # 👇 AGREGA ESTA LÍNEA EXACTAMENTE AQUÍ 👇
-    command: php artisan serve --host=0.0.0.0 --port=8000
+    environment:
+      # El contenedor habla con "mongo" por el nombre del servicio en la red
+      # interna de compose, no por localhost ni por el puerto 27018 publicado.
+      DB_URI: mongodb://mongo:27017/
+    # --no-reload: sin esto, "artisan serve" solo deja pasar una lista blanca
+    # de variables de entorno (APP_ENV, PATH, XDEBUG_*...) al proceso real que
+    # atiende las peticiones HTTP y descarta las demás (incluida DB_URI de
+    # arriba), volviendo a leer el .env "pelón" en cada respawn.
+    command: php artisan serve --host=0.0.0.0 --port=8000 --no-reload
     depends_on:
       - mongo
 

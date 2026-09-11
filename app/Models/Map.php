@@ -36,6 +36,9 @@ class Map extends Model
             : Map::whereNull('deleted_at')->get();
 
         return $maps;
+    }
 
+    public function inventories() {
+        return Plan::whereIn('id', $this->plans ?? []);
     }
 }

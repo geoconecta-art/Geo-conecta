@@ -19,14 +19,10 @@ yarn-error.log
 /public/csv
 /public/img
 
-# Archivos comprimidos e imágenes docker/tar
-*.zip
+# Datos locales de Mongo para docker-compose (nunca deben ir a git)
+/data
+# Export/backup de imagen Docker, demasiado grande para git
 *.tar
-*.gz
-
-# Archivos y registros internos de MongoDB local
-data/
-data/db/
-
-# Mapas pesados (si superan 100 MB o no son necesarios en el repo)
-public/maps/*.geojson
+*.back
+*.bak
+.DS_Store

@@ -25,6 +25,7 @@
 
 {{-- <body class="nk-body bg-lighter npc-default has-apps-sidebar has-sidebar"> --}}
 <body class="nk-body bg-lighter npc-general has-sidebar no-touch nk-nio-theme">
+    @csrf
     <div class="nk-app-root">
         <!-- main @s -->
         <div class="nk-main ">

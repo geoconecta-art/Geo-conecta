@@ -1,0 +1,16 @@
+.git
+.gitattributes
+.gitignore
+node_modules
+vendor
+data
+*.tar
+*.back
+*.bak
+storage/logs/*.log
+storage/framework/cache/data/*
+storage/framework/sessions/*
+storage/framework/views/*
+.env
+.DS_Store
+README.md
